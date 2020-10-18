@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ftps-service
+spec:
+  type: LoadBalancer
+  externalTrafficPolicy: Local
+  selector:
+    app: ftps
+  ports:
+  - name: port-20
+    port: 20
+    targetPort: 20
+  - name: port-21
+    port: 21
+    targetPort: 21
+  - name: port-21000
+    port: 21000
+  - name: port-21001
+    port: 21001
