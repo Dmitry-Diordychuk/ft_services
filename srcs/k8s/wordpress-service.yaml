@@ -4,9 +4,8 @@ metadata:
   name: wordpress-service
 spec:
   type: LoadBalancer
-  externalTrafficPolicy: Local
   selector:
     app: wordpress
   ports:
-  - port: 33233
-    targetPort: 33233
+  - port: 5050
+    targetPort: 5050
