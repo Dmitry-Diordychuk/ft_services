@@ -56,6 +56,9 @@ docker build -t nginx srcs/nginx
 #wordpress
 docker build -t wordpress srcs/wordpress
 
+#phpmyadmin
+docker build -t phpmyadmin srcs/phpmyadmin
+
 #k8s
 kubectl apply -f srcs/k8s
 

@@ -23,7 +23,7 @@ spec:
         resources:
           limits:
             memory: "128Mi"
-            cpu: "250m"
+            cpu: "100m"
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD

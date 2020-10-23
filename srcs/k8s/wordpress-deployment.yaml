@@ -18,13 +18,13 @@ spec:
         tier: frontend
     spec:
       containers:
-      - image: wordpress
+      - name: wordpress 
+        image: wordpress
         imagePullPolicy: Never
         resources:
           limits:
             memory: "128Mi"
-            cpu: "250m"
-        name: wordpress
+            cpu: "100m"
         env:
         - name: WORDPRESS_DB_HOST
           value: wordpress-mysql
