@@ -2,25 +2,33 @@
 
 echo "$1"
 
+if [ $1 = "start" ];
+then
+    minikube start --driver=virtualbox
+fi
+
 if [ $1 = "delete" ];
 then
     kubectl delete -f srcs/metal
     kubectl delete -f srcs/k8s
+    kubectl delete secret mysqlpassword
     minikube delete
 fi
 if [ $1 = "clean" ];
 then
     kubectl delete -f srcs/metal
     kubectl delete -f srcs/k8s
+    kubectl delete secret mysqlpassword
 fi
 if [ $1 = "restart" ];
 then
     kubectl delete -f srcs/metal
     kubectl delete -f srcs/k8s
+    kubectl delete secret mysqlpassword
     minikube delete
+    minikube start --driver=virtualbox
 fi
 
-minikube start --driver=virtualbox
 minikube addons enable metallb
 
 #docker setup
@@ -50,3 +58,6 @@ docker build -t wordpress srcs/wordpress
 
 #k8s
 kubectl apply -f srcs/k8s
+
+#secret
+kubectl create secret generic mysql-pass --from-literal password=password
