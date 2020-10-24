@@ -5,6 +5,11 @@ ENV MYSQL_ROOT_PASSWORD=password
 RUN apk update
 RUN apk upgrade
 RUN apk add mysql mysql-client
+RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+
+COPY run.sh /home/run.sh
+RUN mkdir -p /etc/telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 RUN adduser mysql root
 RUN addgroup mysql mysql

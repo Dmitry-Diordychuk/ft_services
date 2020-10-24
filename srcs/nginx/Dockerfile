@@ -4,6 +4,12 @@ RUN apk update
 RUN apk upgrade
 RUN apk add nginx
 RUN apk add openssl
+RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+
+COPY run.sh /home/run.sh
+RUN mkdir -p /etc/telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
+
 RUN adduser -D -g 'www' www
 RUN mkdir /www
 RUN mkdir /working_dir

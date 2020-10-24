@@ -7,6 +7,11 @@ RUN apk update
 RUN apk upgrade
 RUN apk add vsftpd
 RUN apk add openssl
+RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+
+COPY run.sh /home/run.sh
+RUN mkdir -p /etc/telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 COPY vsftpd.conf /etc/vsftpd/vsftpd.conf
 

@@ -45,7 +45,7 @@ docker build -t ftps srcs/ftps
 docker build -t grafana srcs/grafana
 
 #influxDB
-docker build -t influxDB srcs/influxDB
+docker build -t influxdb srcs/influxDB
 
 #mysql
 docker build -t mysql srcs/mysql
