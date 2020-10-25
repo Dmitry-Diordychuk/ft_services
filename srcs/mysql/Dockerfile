@@ -19,6 +19,7 @@ RUN chown -R mysql:root /var/lib/mysql
 RUN chown -R mysql:root /run/mysqld
 
 COPY database.sql /home/root/database.sql
+COPY dump.sql /home/root/dump.sql
 COPY run.sh /home/root/run.sh
 
 EXPOSE 3306

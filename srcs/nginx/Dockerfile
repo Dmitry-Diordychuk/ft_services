@@ -5,8 +5,10 @@ RUN apk upgrade
 RUN apk add nginx
 RUN apk add openssl
 RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+RUN apk add openssh
 
-COPY run.sh /home/run.sh
+RUN ssh-keygen -A
+
 RUN mkdir -p /etc/telegraf
 COPY telegraf.conf /etc/telegraf/telegraf.conf
 
@@ -25,5 +27,6 @@ RUN openssl req -x509 -nodes -days 365 -subj "/C=RU/ST=RUSSIA/L=MOSCOW/O=42/OU=s
 
 EXPOSE 80
 EXPOSE 443
+EXPOSE 22
 
-CMD [ "nginx", "-g", "daemon off;" ]
+CMD nginx -g 'daemon off;' & sleep 10 ; telegraf & sleep 5 ; /usr/sbin/sshd -D

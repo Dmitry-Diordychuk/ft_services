@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 ENV WORDPRESS_DB_HOST=mysql
 ENV WORDPRESS_DB_PASSWORD=password

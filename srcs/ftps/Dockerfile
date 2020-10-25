@@ -9,7 +9,6 @@ RUN apk add vsftpd
 RUN apk add openssl
 RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 
-COPY run.sh /home/run.sh
 RUN mkdir -p /etc/telegraf
 COPY telegraf.conf /etc/telegraf/telegraf.conf
 
@@ -24,4 +23,4 @@ RUN chown $FTP_USER:$FTP_USER /home/$FTP_USER/ -R
 
 RUN openssl req -x509 -nodes -days 365 -subj "/C=RU/ST=RUSSIA/L=MOSCOW/O=42/OU=school/CN=kdustin" -newkey rsa:2048 -keyout /etc/ssl/nginx-selfsigned.key -out /etc/ssl/nginx-selfsigned.crt;
 
-CMD [ "/usr/sbin/vsftpd", "/etc/vsftpd/vsftpd.conf" ]
+CMD /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf & sleep 5 ; telegraf

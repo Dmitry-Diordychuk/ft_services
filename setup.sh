@@ -22,9 +22,6 @@ then
 fi
 if [ $1 = "restart" ];
 then
-    kubectl delete -f srcs/metal
-    kubectl delete -f srcs/k8s
-    kubectl delete secret mysqlpassword
     minikube delete
     minikube start --driver=virtualbox
 fi
@@ -45,7 +42,7 @@ docker build -t ftps srcs/ftps
 docker build -t grafana srcs/grafana
 
 #influxDB
-docker build -t influxdb srcs/influxDB
+docker build -t influxdb srcs/influxdb
 
 #mysql
 docker build -t mysql srcs/mysql

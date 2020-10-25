@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 ENV PMA_HOST=mysql
 ENV MYSQL_ROOT_PASSWORD=password
