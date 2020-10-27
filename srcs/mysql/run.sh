@@ -10,11 +10,6 @@ then
     sed -i 's/password/'"$MYSQL_ROOT_PASSWORD"'/g' /home/root/database.sql
     mysqld --user=root --bootstrap --verbose=0 < /home/root/database.sql 
     mysqld --user=root --bootstrap --verbose=0 < /home/root/dump.sql
-fi
-
-if [ -d /var/lib/mysql/wordpress ]
-then
-    echo "init dump"
     mysqld --user=root --bootstrap --verbose=0 < /home/root/dump.sql
 fi
 

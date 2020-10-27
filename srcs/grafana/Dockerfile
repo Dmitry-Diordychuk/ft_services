@@ -11,5 +11,7 @@ COPY telegraf.conf /etc/telegraf/telegraf.conf
 
 EXPOSE 3000
 
+COPY grafana.db /usr/share/grafana/data/grafana.db
+
 COPY supervisor.conf /etc/supervisor.conf
 CMD supervisord -c /etc/supervisor.conf

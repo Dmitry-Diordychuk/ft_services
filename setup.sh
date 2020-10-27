@@ -61,3 +61,5 @@ kubectl apply -f srcs/k8s
 
 #secret
 kubectl create secret generic mysql-pass --from-literal password=password
+
+minikube dashboard
