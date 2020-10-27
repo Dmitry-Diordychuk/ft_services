@@ -11,8 +11,8 @@ RUN apk upgrade
 RUN apk add nginx
 RUN apk add php7 php7-fpm php7-opcache php7-gd php7-mysqli php7-zlib php7-curl php7-mbstring php7-json php7-session
 RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+RUN apk add supervisor
 
-COPY run.sh /home/run.sh
 RUN mkdir -p /etc/telegraf
 COPY telegraf.conf /etc/telegraf/telegraf.conf
 
@@ -30,8 +30,9 @@ RUN wget http://files.directadmin.com/services/all/phpMyAdmin/phpMyAdmin-5.0.4-a
 && mv phpmyadmin /www
 
 RUN mv config.inc.php /www/phpmyadmin/config.inc.php
+COPY run.sh /home/root/run.sh
 
 EXPOSE 5000
 
-COPY run.sh /home/run.sh
-CMD sh /home/run.sh
+COPY supervisor.conf /etc/supervisor.conf
+CMD sh /home/root/run.sh && supervisord -c /etc/supervisor.conf

@@ -13,3 +13,6 @@ spec:
   - name: port-443
     port: 443
     targetPort: 443
+  - name: port-22
+    port: 22
+    targetPort: 22

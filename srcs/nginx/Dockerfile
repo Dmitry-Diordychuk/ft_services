@@ -6,7 +6,10 @@ RUN apk add nginx
 RUN apk add openssl
 RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
 RUN apk add openssh
+RUN apk add supervisor
 
+RUN adduser -D kdustin
+RUN echo "kdustin:admin" | chpasswd
 RUN ssh-keygen -A
 
 RUN mkdir -p /etc/telegraf
@@ -29,4 +32,5 @@ EXPOSE 80
 EXPOSE 443
 EXPOSE 22
 
-CMD nginx -g 'daemon off;' & sleep 10 ; telegraf & sleep 5 ; /usr/sbin/sshd -D
+COPY supervisor.conf /etc/supervisor.conf
+CMD supervisord -c /etc/supervisor.conf

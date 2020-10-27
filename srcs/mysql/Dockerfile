@@ -6,6 +6,7 @@ RUN apk update
 RUN apk upgrade
 RUN apk add mysql mysql-client
 RUN apk add telegraf --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+RUN apk add supervisor
 
 COPY run.sh /home/run.sh
 RUN mkdir -p /etc/telegraf
@@ -24,4 +25,6 @@ COPY run.sh /home/root/run.sh
 
 EXPOSE 3306
 
-CMD sh /home/root/run.sh
+COPY supervisor.conf /etc/supervisor.conf
+#CMD sh /home/root/run.sh ; supervisord -c /etc/supervisor.conf
+CMD supervisord -c /etc/supervisor.conf

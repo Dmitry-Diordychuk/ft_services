@@ -1,3 +1,4 @@
+use wordpress;
 -- MariaDB dump 10.17  Distrib 10.4.15-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: wordpress
